@@ -1,0 +1,6 @@
+paho-mqtt
+numpy
+pymysql
+psycopg2-binary
+sqlalchemy
+pandas

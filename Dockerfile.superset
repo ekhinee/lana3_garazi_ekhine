@@ -1,0 +1,10 @@
+FROM apache/superset:latest
+
+USER root
+
+# Instala dependencias extra
+RUN pip install --no-cache-dir pymysql \
+    && pip install --no-cache-dir psycopg2-binary
+
+USER superset
+
