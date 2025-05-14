@@ -1,0 +1,22 @@
+# Python-eko irudi base
+FROM python:3.9-slim
+
+# Lan lekua
+WORKDIR /data
+
+# Gure lokaletik beharrezko fitxategiak kopiatuko ditugu
+COPY requirements_python.txt /data/requirements_python.txt
+COPY ./data/tweets1.json /data/tweets1.json
+COPY ./data/edges1.json /data/edges1.json
+COPY ./data/users1.json /data/users1.json
+COPY tweets_create.py /data/tweets_create.py
+COPY load_json_to_mysql.py /data/load_json_to_mysql.py
+
+# Dependentziak instalatzeko
+RUN pip install --no-cache-dir -r requirements_python.txt
+RUN pip install mysql-connector-python
+
+# Script-a exekutatu, kontenedorea abiatu bezain lazter
+#CMD ["tail", "-f", "/dev/null"]
+CMD ["python", "tweets_create.py"]
+
